@@ -1,10 +1,31 @@
-# Physical-design intermediate runs
+# Physical-design intermediate runs and experiments
 pnr/runs/
+pnr/mfs3_test/
+pnr/config_*.json
+pnr/config.json.before_*
 
 # Python virtual environments and caches
 .venv/
 __pycache__/
 *.py[cod]
+
+# Generated simulation outputs
+mult.vcd
+sim
+gls
+
+# Report is prepared/exported separately in Overleaf
+report/attempts.csv
+report/partB_synthesis.log
+report/partC_sta.log
+report/partD_*.log
+report/partC_numbers.txt
+report/tools/
+finish_kit.zip
+
+# Stale duplicate files, not part of the prescribed file architecture
+sta/sta_corrected.tcl
+tb/tb_full_adder.v
 
 # Temporary editor and OS files
 .vscode/
