@@ -1,22 +1,11 @@
-# Part B: SKY130 HD synthesis for the 4-bit array multiplier
+# Part B: logic synthesis with Yosys (steps exactly as in the assignment)
+# Run from the project root:  yosys -c synth/synth.tcl
+set lib $::env(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 
-# Read RTL and select the top-level design
-read_verilog rtl/full_adder.v rtl/mult_array.v
-hierarchy -check -top mult_array
-
-# Synthesize generic logic
-synth -top mult_array -flatten -noabc
-
-# Map flip-flops to SKY130 HD cells
-dfflibmap -liberty /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-
-# Map combinational logic to SKY130 HD cells
-abc -liberty /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-
-# Clean and verify the mapped design
-clean
-check
-
-# Save cell statistics and mapped netlist
-tee -o synth/mult_array_stat.rpt stat -liberty /foss/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-write_verilog -noattr -noexpr synth/mult_array_netlist.v
+yosys read_verilog rtl/full_adder.v rtl/mult_array.v
+yosys synth -top mult_array -flatten
+yosys dfflibmap -liberty $lib
+yosys abc -liberty $lib
+yosys opt_clean -purge
+yosys tee -o synth/mult_array_stat.rpt stat -liberty $lib
+yosys write_verilog -noattr synth/mult_array_netlist.v

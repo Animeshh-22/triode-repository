@@ -52,49 +52,14 @@ module mult_array(clk, rst_n, a, b, p);
   wire _038_;
   wire [3:0] a_reg;
   wire [3:0] b_reg;
-  wire [4:0] c1;
-  wire [4:0] c2;
   wire [4:0] c3;
-  wire \fa10.cin ;
-  wire \fa10.cout ;
   wire \fa10.sum ;
-  wire \fa11.cin ;
-  wire \fa11.cout ;
-  wire \fa12.cin ;
-  wire \fa12.cout ;
-  wire \fa13.b ;
-  wire \fa13.cin ;
-  wire \fa13.cout ;
-  wire \fa20.cin ;
-  wire \fa20.cout ;
   wire \fa20.sum ;
-  wire \fa21.cin ;
-  wire \fa21.cout ;
-  wire \fa22.cin ;
-  wire \fa22.cout ;
-  wire \fa23.b ;
-  wire \fa23.cin ;
-  wire \fa23.cout ;
-  wire \fa30.cin ;
-  wire \fa30.cout ;
   wire \fa30.sum ;
-  wire \fa31.cin ;
-  wire \fa31.cout ;
   wire \fa31.sum ;
-  wire \fa32.cin ;
-  wire \fa32.cout ;
   wire \fa32.sum ;
-  wire \fa33.b ;
-  wire \fa33.cin ;
-  wire \fa33.cout ;
   wire \fa33.sum ;
   wire [3:0] pp0;
-  wire [7:0] product_comb;
-  wire [3:0] r1;
-  wire [3:0] r2;
-  wire [3:0] s1;
-  wire [3:0] s2;
-  wire [3:0] s3;
   sky130_fd_sc_hd__clkinv_1 _039_ (
     .A(a_reg[1]),
     .Y(_000_)
@@ -119,48 +84,48 @@ module mult_array(clk, rst_n, a, b, p);
     .Y(_003_)
   );
   sky130_fd_sc_hd__nand4_1 _044_ (
-    .A(a_reg[1]),
-    .B(a_reg[0]),
-    .C(b_reg[1]),
-    .D(b_reg[0]),
+    .A(a_reg[0]),
+    .B(a_reg[1]),
+    .C(b_reg[0]),
+    .D(b_reg[1]),
     .Y(_004_)
   );
   sky130_fd_sc_hd__nand2_1 _045_ (
-    .A(a_reg[2]),
-    .B(b_reg[1]),
+    .A(b_reg[1]),
+    .B(a_reg[2]),
     .Y(_005_)
   );
-  sky130_fd_sc_hd__nand4_1 _046_ (
-    .A(a_reg[2]),
-    .B(a_reg[1]),
+  sky130_fd_sc_hd__and4_1 _046_ (
+    .A(a_reg[1]),
+    .B(b_reg[0]),
     .C(b_reg[1]),
-    .D(b_reg[0]),
-    .Y(_006_)
+    .D(a_reg[2]),
+    .X(_006_)
   );
-  sky130_fd_sc_hd__o2111ai_1 _047_ (
-    .A1(a_reg[2]),
-    .A2(a_reg[0]),
+  sky130_fd_sc_hd__o311ai_0 _047_ (
+    .A1(a_reg[0]),
+    .A2(_000_),
+    .A3(_001_),
+    .B1(a_reg[2]),
+    .C1(b_reg[0]),
+    .Y(_007_)
+  );
+  sky130_fd_sc_hd__o2111ai_1 _048_ (
+    .A1(a_reg[0]),
+    .A2(a_reg[2]),
     .B1(b_reg[1]),
     .C1(b_reg[0]),
     .D1(a_reg[1]),
-    .Y(_007_)
-  );
-  sky130_fd_sc_hd__o311ai_0 _048_ (
-    .A1(_000_),
-    .A2(a_reg[0]),
-    .A3(_001_),
-    .B1(b_reg[0]),
-    .C1(a_reg[2]),
     .Y(_008_)
   );
   sky130_fd_sc_hd__nand3_1 _049_ (
     .A(a_reg[1]),
     .B(b_reg[1]),
-    .C(_007_),
+    .C(_008_),
     .Y(_009_)
   );
   sky130_fd_sc_hd__a21oi_1 _050_ (
-    .A1(_008_),
+    .A1(_007_),
     .A2(_009_),
     .B1(_003_),
     .Y(_010_)
@@ -176,7 +141,7 @@ module mult_array(clk, rst_n, a, b, p);
     .X(_012_)
   );
   sky130_fd_sc_hd__xnor2_1 _053_ (
-    .A(_007_),
+    .A(_008_),
     .B(_012_),
     .Y(_013_)
   );
@@ -198,8 +163,8 @@ module mult_array(clk, rst_n, a, b, p);
     .Y(_016_)
   );
   sky130_fd_sc_hd__nand2_1 _057_ (
-    .A(a_reg[2]),
-    .B(b_reg[2]),
+    .A(b_reg[2]),
+    .B(a_reg[2]),
     .Y(_017_)
   );
   sky130_fd_sc_hd__a21oi_1 _058_ (
@@ -208,108 +173,108 @@ module mult_array(clk, rst_n, a, b, p);
     .B1(_011_),
     .Y(_018_)
   );
-  sky130_fd_sc_hd__nand2_1 _059_ (
-    .A(b_reg[1]),
-    .B(a_reg[3]),
+  sky130_fd_sc_hd__a21oi_1 _059_ (
+    .A1(b_reg[1]),
+    .A2(a_reg[3]),
+    .B1(_006_),
     .Y(_019_)
   );
-  sky130_fd_sc_hd__a21oi_1 _060_ (
-    .A1(_006_),
-    .A2(_019_),
-    .B1(_018_),
+  sky130_fd_sc_hd__nor3_1 _060_ (
+    .A(_017_),
+    .B(_018_),
+    .C(_019_),
     .Y(_020_)
   );
-  sky130_fd_sc_hd__nor2b_1 _061_ (
-    .A(_017_),
-    .B_N(_020_),
+  sky130_fd_sc_hd__o21ai_0 _061_ (
+    .A1(_018_),
+    .A2(_019_),
+    .B1(_017_),
     .Y(_021_)
   );
-  sky130_fd_sc_hd__a21o_1 _062_ (
-    .A1(a_reg[2]),
-    .A2(b_reg[2]),
-    .B1(_020_),
-    .X(_022_)
+  sky130_fd_sc_hd__nor2b_1 _062_ (
+    .A(_020_),
+    .B_N(_021_),
+    .Y(_022_)
   );
-  sky130_fd_sc_hd__xnor2_1 _063_ (
-    .A(_017_),
-    .B(_020_),
-    .Y(_023_)
-  );
-  sky130_fd_sc_hd__maj3_1 _064_ (
+  sky130_fd_sc_hd__maj3_1 _063_ (
     .A(_002_),
     .B(_010_),
     .C(_013_),
-    .X(_024_)
+    .X(_023_)
   );
-  sky130_fd_sc_hd__xnor2_1 _065_ (
-    .A(_023_),
+  sky130_fd_sc_hd__xnor2_1 _064_ (
+    .A(_022_),
+    .B(_023_),
+    .Y(_024_)
+  );
+  sky130_fd_sc_hd__xor2_1 _065_ (
+    .A(_016_),
     .B(_024_),
-    .Y(_025_)
+    .X(_025_)
   );
-  sky130_fd_sc_hd__xnor3_1 _066_ (
+  sky130_fd_sc_hd__maj3_1 _066_ (
     .A(_015_),
     .B(_016_),
-    .C(_025_),
-    .X(\fa31.sum )
+    .C(_024_),
+    .X(_026_)
   );
-  sky130_fd_sc_hd__nand2_1 _067_ (
-    .A(b_reg[3]),
-    .B(a_reg[3]),
-    .Y(_026_)
+  sky130_fd_sc_hd__xnor2_1 _067_ (
+    .A(_015_),
+    .B(_025_),
+    .Y(\fa31.sum )
   );
   sky130_fd_sc_hd__nand2_1 _068_ (
-    .A(b_reg[2]),
+    .A(b_reg[3]),
     .B(a_reg[3]),
     .Y(_027_)
   );
-  sky130_fd_sc_hd__a21oi_1 _069_ (
-    .A1(_022_),
-    .A2(_024_),
-    .B1(_021_),
-    .Y(_028_)
-  );
-  sky130_fd_sc_hd__nand2b_1 _070_ (
-    .A_N(_018_),
-    .B(_028_),
-    .Y(_029_)
-  );
-  sky130_fd_sc_hd__nand3_1 _071_ (
+  sky130_fd_sc_hd__nand2_1 _069_ (
     .A(b_reg[2]),
     .B(a_reg[3]),
-    .C(_029_),
+    .Y(_028_)
+  );
+  sky130_fd_sc_hd__a21oi_1 _070_ (
+    .A1(_021_),
+    .A2(_023_),
+    .B1(_020_),
+    .Y(_029_)
+  );
+  sky130_fd_sc_hd__nand2b_1 _071_ (
+    .A_N(_018_),
+    .B(_029_),
     .Y(_030_)
   );
-  sky130_fd_sc_hd__xnor3_1 _072_ (
-    .A(_018_),
-    .B(_027_),
-    .C(_028_),
-    .X(_031_)
+  sky130_fd_sc_hd__nand3_1 _072_ (
+    .A(b_reg[2]),
+    .B(a_reg[3]),
+    .C(_030_),
+    .Y(_031_)
   );
-  sky130_fd_sc_hd__maj3_1 _073_ (
-    .A(_015_),
-    .B(_016_),
-    .C(_025_),
+  sky130_fd_sc_hd__xnor3_1 _073_ (
+    .A(_018_),
+    .B(_028_),
+    .C(_029_),
     .X(_032_)
   );
   sky130_fd_sc_hd__nand2_1 _074_ (
-    .A(a_reg[2]),
-    .B(b_reg[3]),
+    .A(b_reg[3]),
+    .B(a_reg[2]),
     .Y(_033_)
   );
   sky130_fd_sc_hd__maj3_1 _075_ (
-    .A(_031_),
+    .A(_026_),
     .B(_032_),
     .C(_033_),
     .X(_034_)
   );
   sky130_fd_sc_hd__a21oi_1 _076_ (
-    .A1(_030_),
+    .A1(_031_),
     .A2(_034_),
-    .B1(_026_),
-    .Y(\fa33.cout )
+    .B1(_027_),
+    .Y(c3[4])
   );
   sky130_fd_sc_hd__xor2_1 _077_ (
-    .A(_031_),
+    .A(_026_),
     .B(_032_),
     .X(_035_)
   );
@@ -319,8 +284,8 @@ module mult_array(clk, rst_n, a, b, p);
     .Y(\fa32.sum )
   );
   sky130_fd_sc_hd__xnor3_1 _079_ (
-    .A(_026_),
-    .B(_030_),
+    .A(_027_),
+    .B(_031_),
     .C(_034_),
     .X(\fa33.sum )
   );
@@ -337,7 +302,7 @@ module mult_array(clk, rst_n, a, b, p);
   );
   sky130_fd_sc_hd__and3_1 _082_ (
     .A(_003_),
-    .B(_008_),
+    .B(_007_),
     .C(_009_),
     .X(_037_)
   );
@@ -347,10 +312,10 @@ module mult_array(clk, rst_n, a, b, p);
     .Y(\fa20.sum )
   );
   sky130_fd_sc_hd__a22oi_1 _084_ (
-    .A1(a_reg[0]),
-    .A2(b_reg[1]),
-    .B1(b_reg[0]),
-    .B2(a_reg[1]),
+    .A1(a_reg[1]),
+    .A2(b_reg[0]),
+    .B1(b_reg[1]),
+    .B2(a_reg[0]),
     .Y(_038_)
   );
   sky130_fd_sc_hd__lpflow_isobufsrc_1 _085_ (
@@ -402,7 +367,7 @@ module mult_array(clk, rst_n, a, b, p);
   );
   sky130_fd_sc_hd__dfrtp_1 _093_ (
     .CLK(clk),
-    .D(\fa33.cout ),
+    .D(c3[4]),
     .Q(p[7]),
     .RESET_B(rst_n)
   );
@@ -454,39 +419,5 @@ module mult_array(clk, rst_n, a, b, p);
     .Q(b_reg[3]),
     .RESET_B(rst_n)
   );
-  assign \fa13.b  = 1'h0;
-  assign \fa13.cin  = c1[3];
-  assign \fa13.cout  = c1[4];
-  assign \fa31.cout  = c3[2];
-  assign \fa31.cin  = c3[1];
-  assign \fa12.cin  = c1[2];
-  assign \fa12.cout  = c1[3];
-  assign \fa20.cout  = c2[1];
-  assign \fa11.cin  = c1[1];
-  assign \fa11.cout  = c1[2];
-  assign \fa22.cin  = c2[2];
-  assign \fa23.cin  = c2[3];
-  assign \fa10.cin  = 1'h0;
-  assign \fa10.cout  = c1[1];
-  assign \fa22.cout  = c2[3];
-  assign \fa20.cin  = 1'h0;
-  assign \fa32.cout  = c3[3];
-  assign \fa32.cin  = c3[2];
-  assign \fa30.cin  = 1'h0;
-  assign \fa21.cin  = c2[1];
-  assign \fa21.cout  = c2[2];
-  assign \fa23.cout  = c2[4];
-  assign \fa33.cin  = c3[3];
-  assign \fa33.b  = c2[4];
-  assign product_comb = { \fa33.cout , \fa33.sum , \fa32.sum , \fa31.sum , \fa30.sum , \fa20.sum , \fa10.sum , pp0[0] };
-  assign { c3[4], c3[0] } = { \fa33.cout , 1'h0 };
-  assign c2[0] = 1'h0;
-  assign c1[0] = 1'h0;
-  assign s3 = { \fa33.sum , \fa32.sum , \fa31.sum , \fa30.sum  };
-  assign s2[0] = \fa20.sum ;
-  assign s1[0] = \fa10.sum ;
-  assign r2[3] = c2[4];
-  assign r1[3] = c1[4];
-  assign \fa23.b  = c1[4];
-  assign \fa30.cout  = c3[1];
+  assign c3[0] = 1'h0;
 endmodule

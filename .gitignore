@@ -1,0 +1,11 @@
+# Physical-design intermediate runs
+pnr/runs/
+
+# Python virtual environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+
+# Temporary editor and OS files
+.vscode/
+.DS_Store
